@@ -27,6 +27,7 @@ export type DragableCarouselProps = {
   showArrows?: boolean
   showDots?: boolean
   arrowColor?: string
+  arrowSize?: number | string
   dotColor?: string
   autoplay?: boolean
   autoplayDelay?: number
