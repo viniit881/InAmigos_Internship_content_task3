@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# Summit Core Fitness
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, modern fitness and gym website designed to provide a luxury-grade digital experience for members. This project showcases state-of-the-art gym facilities, elite coaching services, and flexible membership options through a highly interactive and visually engaging interface.
 
-Currently, two official plugins are available:
+**Repository:** [InAmigos_Internship_content_task3](https://github.com/viniit881/InAmigos_Internship_content_task3)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏋️ Features
 
-## React Compiler
+- **Modern & Premium Design**: A sleek dark theme with rich gold and red accents, designed to reflect the atmosphere of a high-end fitness sanctuary.
+- **Interactive Membership Plans**: Compare monthly and annual membership tiers with clear pricing and feature breakdowns.
+- **Service Showcase**: Explore personal coaching, nutrition planning, and specialized training programs with interactive hover-reveal cards.
+- **Facility Previews**: High-quality imagery and video backgrounds that give prospective members a cinematic tour of the gym environment.
+- **Class Booking & Schedules**: Integrated interfaces for members to easily view schedules and book their free trials or training sessions.
+- **Dynamic Animations**: Smooth scroll effects, counting statistics, and custom interactions powered by GSAP and Framer Motion.
+- **Responsive Layout**: A fully responsive design ensuring a seamless browsing experience across all devices, from mobile phones to ultra-wide desktop monitors.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend**: React.js with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS, custom CSS (Glassmorphism, animated gradients)
+- **Animations**: GSAP, Framer Motion
+- **Icons**: Lucide React
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+To run this project locally:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/viniit881/InAmigos_Internship_content_task3.git
+   cd InAmigos_Internship_content_task3/app
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:5173` in your browser to view the website.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 👨‍💻 Author
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Vinit**  
+GitHub: [@viniit881](https://github.com/viniit881)
