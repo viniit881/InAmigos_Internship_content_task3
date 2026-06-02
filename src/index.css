@@ -439,6 +439,25 @@
     @apply text-accent-gold;
     filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.4));
   }
+
+  /* ─── Hero scroll-driven frame animation ─── */
+  .hero-scroll-container {
+    position: relative;
+    height: 300vh; /* Scroll distance that drives the frame animation */
+  }
+
+  .hero-scroll-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #0A0A0A;
+  }
+
+  .hero-scroll-sticky canvas {
+    image-rendering: auto;
+  }
 }
 
 @layer utilities {

@@ -9,43 +9,49 @@ const transformations = [
     name: 'Logan R.',
     result: 'Lost 18kg in 5 months',
     category: 'Weight Loss',
-    before: images.transforms.before1,
-    after: images.transforms.after1,
+    image: images.transforms.t6,
   },
   {
     name: 'Maya K.',
     result: 'Gained 12kg lean muscle',
     category: 'Muscle Gain',
-    before: images.transforms.before2,
-    after: images.transforms.after2,
+    image: images.transforms.t5,
   },
   {
     name: 'Ethan S.',
     result: 'From skinny to shredded',
     category: 'Body Recomposition',
-    before: images.transforms.before3,
-    after: images.transforms.after3,
+    image: images.transforms.t3,
   },
   {
     name: 'Olivia P.',
     result: 'Lost 22kg post-pregnancy',
     category: 'Weight Loss',
-    before: images.transforms.before1,
-    after: images.transforms.after1,
+    image: images.transforms.t4,
   },
   {
     name: 'Noah T.',
     result: 'Gained 8kg muscle in 6 months',
     category: 'Muscle Gain',
-    before: images.transforms.before3,
-    after: images.transforms.after3,
+    image: images.transforms.t1,
   },
   {
     name: 'Sasha W.',
     result: 'Complete lifestyle transformation',
     category: 'Overall Fitness',
-    before: images.transforms.before2,
-    after: images.transforms.after2,
+    image: images.transforms.t2,
+  },
+  {
+    name: 'Marcus V.',
+    result: 'Tired professional to fit & active',
+    category: 'Lifestyle Shift',
+    image: images.transforms.t7,
+  },
+  {
+    name: 'Derek J.',
+    result: 'Reclaimed health & shredded down',
+    category: 'Body Recomposition',
+    image: images.transforms.t8,
   },
 ]
 
@@ -121,35 +127,18 @@ export default function Transformations() {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <div className="aspect-[3/4] relative">
-                    <div className="absolute inset-0 flex">
-                      <div className="w-1/2 relative overflow-hidden">
-                        <img
-                          src={t.before}
-                          alt={`${t.name} before`}
-                          className="absolute inset-0 w-full h-full object-cover grayscale"
-                        />
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[rgba(11,11,11,0.8)] px-4 py-1.5 rounded">
-                          <span className="font-inter text-xs font-semibold uppercase text-text-muted">Before</span>
-                        </div>
-                      </div>
-                      <div className="w-1/2 relative overflow-hidden">
-                        <img
-                          src={t.after}
-                          alt={`${t.name} after`}
-                          className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 ${hoveredIndex === index ? 'brightness-110 scale-105' : ''}`}
-                        />
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[rgba(11,11,11,0.8)] px-4 py-1.5 rounded">
-                          <span className="font-inter text-xs font-semibold uppercase text-accent-red">After</span>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="aspect-[9/16] relative bg-black">
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-300 group-hover:scale-102 group-hover:brightness-110"
+                    />
 
-                    <div className={`absolute inset-0 bg-[rgba(11,11,11,0.6)] flex items-center justify-center transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
+                    <div className={`absolute inset-0 bg-[rgba(11,11,11,0.4)] flex items-center justify-center transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
                       <span className="font-oswald font-semibold text-base text-white uppercase underline underline-offset-4 decoration-accent-red">View Result</span>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[rgba(11,11,11,0.9)] to-transparent p-6">
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[rgba(11,11,11,0.9)] to-transparent p-6 z-10">
                       <h3 className="font-oswald font-semibold text-lg text-white uppercase text-center">{t.name}</h3>
                       <p className="font-inter text-sm text-text-secondary text-center mt-1">{t.result}</p>
                       <span className="font-inter text-xs text-accent-red text-center block mt-1">{t.category}</span>

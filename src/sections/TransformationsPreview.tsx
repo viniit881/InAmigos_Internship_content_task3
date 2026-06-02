@@ -9,20 +9,17 @@ const transformations = [
   {
     name: 'Logan R.',
     result: 'Lost 18kg in 5 months',
-    before: images.transforms.before1,
-    after: images.transforms.after1,
+    image: images.transforms.t6,
   },
   {
     name: 'Maya K.',
     result: 'Gained lean muscle — 12kg',
-    before: images.transforms.before2,
-    after: images.transforms.after2,
+    image: images.transforms.t5,
   },
   {
     name: 'Ethan S.',
     result: 'Transformed from skinny to shredded',
-    before: images.transforms.before3,
-    after: images.transforms.after3,
+    image: images.transforms.t3,
   },
 ]
 
@@ -49,39 +46,15 @@ export default function TransformationsPreview() {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className="aspect-[3/4] relative">
-                  <div className="absolute inset-0 flex">
-                    <div className="w-1/2 relative overflow-hidden">
-                      <img
-                        src={t.before}
-                        alt={`${t.name} before`}
-                        className="absolute inset-0 w-full h-full object-cover grayscale"
-                      />
-                      <div className="absolute top-4 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full">
-                        <span className="font-inter text-xs font-semibold uppercase text-text-muted">
-                          Before
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="w-1/2 relative overflow-hidden">
-                      <img
-                        src={t.after}
-                        alt={`${t.name} after`}
-                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 ${
-                          hoveredIndex === index ? 'brightness-110 scale-105' : ''
-                        }`}
-                      />
-                      <div className="absolute top-4 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full border-accent-red/30">
-                        <span className="font-inter text-xs font-semibold uppercase text-accent-red">
-                          After
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="aspect-[9/16] relative bg-black">
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-102 group-hover:brightness-110"
+                  />
 
                   <div
-                    className={`absolute inset-0 bg-black/50 backdrop-blur-[2px] flex items-center justify-center transition-opacity duration-300 ${
+                    className={`absolute inset-0 bg-black/40 backdrop-blur-[1px] flex items-center justify-center transition-opacity duration-300 ${
                       hoveredIndex === index ? 'opacity-100' : 'opacity-0'
                     }`}
                   >
@@ -90,7 +63,7 @@ export default function TransformationsPreview() {
                     </Badge>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 glass border-0 border-t border-white/10 p-6 rounded-none">
+                  <div className="absolute bottom-0 left-0 right-0 glass border-0 border-t border-white/10 p-6 rounded-none z-10">
                     <h3 className="font-oswald font-semibold text-lg text-white uppercase text-center">
                       {t.name}
                     </h3>

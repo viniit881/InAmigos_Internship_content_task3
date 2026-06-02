@@ -5,13 +5,12 @@ import { images } from '@/lib/images'
 import { FramerCarousel } from '@/framer/components'
 
 const carouselImages = [
-  images.transforms.after1,
-  images.transforms.after2,
-  images.transforms.after3,
-  images.services.muscleGain,
-  images.services.strength,
-  images.gallery[0],
-  images.gallery[1],
+  images.transforms.t1,
+  images.transforms.t2,
+  images.transforms.t3,
+  images.transforms.t4,
+  images.transforms.t5,
+  images.transforms.t6,
 ]
 
 export default function FramerTransformations() {

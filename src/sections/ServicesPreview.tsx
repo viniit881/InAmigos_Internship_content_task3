@@ -72,23 +72,29 @@ export default function ServicesPreview() {
       <div className="absolute inset-0 bg-mesh-rich pointer-events-none opacity-60" />
       <div className="content-max relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
-            <div className="glass-elevated rounded-2xl p-8 md:p-10 premium-border-animated">
-              <span className="label-tag block mb-4">OUR SERVICES</span>
-              <h2 className="section-heading mb-4">WHAT WE OFFER</h2>
-              <p className="font-inter text-base md:text-lg text-text-muted max-w-[400px] mb-6">
-                Everything you need to transform your physique under one roof — curated programs,
-                not cookie-cutter plans.
-              </p>
-              <div className="section-divider mb-6" />
-              <Link to="/services" className="btn-ghost group">
-                VIEW ALL SERVICES
-                <ArrowUpRight size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
-              </Link>
+          <div className="lg:col-span-5 lg:sticky lg:top-24 lg:h-[calc(100vh-120px)] flex flex-col justify-center">
+            <div className="glass-elevated rounded-2xl p-8 md:p-10 md:py-16 premium-border-animated relative overflow-hidden group">
+              {/* Subtle background glow/graphic */}
+              <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent-red/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-accent-red/20 transition-colors duration-700" />
+              <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-accent-gold/5 rounded-full blur-[80px] pointer-events-none" />
+              
+              <div className="relative z-10">
+                <span className="label-tag block mb-4">OUR SERVICES</span>
+                <h2 className="section-heading mb-6 text-4xl lg:text-5xl">WHAT WE OFFER</h2>
+                <p className="font-inter text-base md:text-lg text-text-muted max-w-[400px] mb-8 leading-relaxed">
+                  Everything you need to transform your physique under one roof — curated programs,
+                  not cookie-cutter plans. Our expert coaches and premium facilities are here to guide your journey.
+                </p>
+                <div className="section-divider mb-8" />
+                <Link to="/services" className="btn-ghost group">
+                  VIEW ALL SERVICES
+                  <ArrowUpRight size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
+                </Link>
+              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="lg:col-span-7 flex flex-col gap-6 lg:py-12">
             {services.map((service, index) => (
               <div
                 key={service.title}

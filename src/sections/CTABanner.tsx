@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { images } from '@/lib/images'
 import { ArrowRight, Zap, Shield, Clock } from 'lucide-react'
+import GradientText from '@/components/ui/GradientText'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -65,7 +66,15 @@ export default function CTABanner() {
           </div>
 
           <h2 className="font-oswald font-bold text-3xl md:text-4xl lg:text-5xl text-white uppercase leading-[1.08]">
-            START YOUR <span className="text-gradient-red">FITNESS JOURNEY</span> TODAY
+            START YOUR{' '}
+            <GradientText 
+              colors={["#ff2e2e", "#ff6b6b", "#ff2e2e", "#ff6b6b", "#ff2e2e"]} 
+              animationSpeed={4} 
+              className="inline-block"
+            >
+              FITNESS JOURNEY
+            </GradientText>{' '}
+            TODAY
           </h2>
           <p className="font-inter text-lg text-text-secondary mt-5 max-w-[500px] mx-auto">
             No contracts. No excuses. Just a premium experience built for results.
