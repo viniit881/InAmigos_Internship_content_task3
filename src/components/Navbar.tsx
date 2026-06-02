@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation } from 'react-router'
 import { Menu, X, ArrowRight } from 'lucide-react'
-// @ts-ignore
-import FluidGlass from '@/components/ui/FluidGlass'
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -75,20 +73,29 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop nav with FluidGlass */}
-          <div className="hidden lg:flex flex-1 justify-center h-full relative">
-            <div className="absolute inset-x-0 -top-[50px] h-[200px]">
-              <FluidGlass 
-                mode="bar" 
-                barProps={{
-                  navItems: navLinks.map(l => ({ label: l.label, link: l.path })),
-                  color: '#1a1a1a',
-                  transmission: 0.9,
-                  roughness: 0.2,
-                  ior: 1.2
-                }}
-              />
-            </div>
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="relative px-4 py-2 group"
+              >
+                <span className={`font-inter font-medium text-sm transition-colors duration-300 ${
+                  location.pathname === link.path
+                    ? 'text-accent-red'
+                    : 'text-white/80 group-hover:text-white'
+                }`}>
+                  {link.label}
+                </span>
+                {/* Animated underline */}
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-accent-red to-transparent transition-all duration-400 ease-out ${
+                    location.pathname === link.path ? 'w-3/4 opacity-100' : 'w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-60'
+                  }`}
+                />
+              </Link>
+            ))}
           </div>
 
           {/* Desktop CTA */}
