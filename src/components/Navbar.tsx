@@ -63,8 +63,8 @@ export default function Navbar() {
             className="flex items-center gap-2.5 group"
           >
             <div className="relative">
-              <div className="w-8 h-8 rounded-lg bg-accent-red/20 flex items-center justify-center border border-accent-red/30 group-hover:bg-accent-red/30 transition-all duration-300">
-                <span className="font-oswald font-bold text-sm text-accent-red">SC</span>
+              <div className="w-10 h-10 rounded-lg bg-bg-elevated flex items-center justify-center overflow-hidden border border-white/10 group-hover:border-accent-red/50 transition-all duration-300">
+                <img src="/images/gym_logo.png" alt="Summit Core Logo" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-0.5 -right-0.5 pulse-dot !w-2 !h-2" />
             </div>
