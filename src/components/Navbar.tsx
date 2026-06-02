@@ -73,29 +73,54 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="relative px-4 py-2 group"
-              >
-                <span className={`font-inter font-medium text-sm transition-colors duration-300 ${
-                  location.pathname === link.path
-                    ? 'text-accent-red'
-                    : 'text-white/80 group-hover:text-white'
-                }`}>
-                  {link.label}
-                </span>
-                {/* Animated underline */}
-                <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-accent-red to-transparent transition-all duration-400 ease-out ${
-                    location.pathname === link.path ? 'w-3/4 opacity-100' : 'w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-60'
-                  }`}
-                />
-              </Link>
-            ))}
+          {/* Desktop nav — frosted glass pill */}
+          <div
+            className="hidden lg:flex items-center gap-0.5 px-2 py-1.5 rounded-2xl"
+            style={{
+              background: 'rgba(255,255,255,0.04)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)',
+            }}
+          >
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="relative px-4 py-2 rounded-xl group transition-all duration-300"
+                  style={isActive ? {
+                    background: 'rgba(255,255,255,0.08)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
+                  } : {}}
+                >
+                  {/* Hover glass pill bg */}
+                  {!isActive && (
+                    <span
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: 'rgba(255,255,255,0.05)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                      }}
+                    />
+                  )}
+                  <span className={`relative font-inter font-medium text-sm transition-colors duration-300 ${
+                    isActive ? 'text-white' : 'text-white/60 group-hover:text-white/90'
+                  }`}>
+                    {link.label}
+                  </span>
+                  {/* Active red glow dot */}
+                  {isActive && (
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-red shadow-[0_0_6px_2px_rgba(255,46,46,0.7)]" />
+                  )}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Desktop CTA */}
