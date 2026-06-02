@@ -47,7 +47,6 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {
 
 const ModeWrapper = memo(function ModeWrapper({
   children,
-  glb,
   geometryKey,
   lockToBottom = false,
   followPointer = true,
@@ -55,19 +54,9 @@ const ModeWrapper = memo(function ModeWrapper({
   ...props
 }) {
   const ref = useRef();
-  const { nodes } = useGLTF(glb);
   const buffer = useFBO();
   const { viewport: vp } = useThree();
   const [scene] = useState(() => new THREE.Scene());
-  const geoWidthRef = useRef(1);
-
-  useEffect(() => {
-    const geo = nodes[geometryKey]?.geometry;
-    if(geo) {
-      geo.computeBoundingBox();
-      geoWidthRef.current = geo.boundingBox.max.x - geo.boundingBox.min.x || 1;
-    }
-  }, [nodes, geometryKey]);
 
   useFrame((state, delta) => {
     const { gl, viewport, pointer, camera } = state;
@@ -78,9 +67,7 @@ const ModeWrapper = memo(function ModeWrapper({
     easing.damp3(ref.current.position, [destX, destY, 15], 0.15, delta);
 
     if (modeProps.scale == null) {
-      const maxWorld = v.width * 0.9;
-      const desired = maxWorld / geoWidthRef.current;
-      ref.current.scale.setScalar(Math.min(0.15, desired));
+      ref.current.scale.setScalar(0.15);
     }
 
     gl.setRenderTarget(buffer);
@@ -88,7 +75,7 @@ const ModeWrapper = memo(function ModeWrapper({
     gl.setRenderTarget(null);
 
     // Background Color
-    gl.setClearColor(0x5227ff, 1);
+    gl.setClearColor(0x000000, 0); // Transparent background
   });
 
   const { scale, ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps;
@@ -100,7 +87,9 @@ const ModeWrapper = memo(function ModeWrapper({
         <planeGeometry />
         <meshBasicMaterial map={buffer.texture} transparent />
       </mesh>
-      <mesh ref={ref} scale={scale ?? 0.15} rotation-x={Math.PI / 2} geometry={nodes[geometryKey]?.geometry} {...props}>
+      <mesh ref={ref} scale={scale ?? 1.5} rotation-x={Math.PI / 2} {...props}>
+        {geometryKey === 'Cylinder' && <cylinderGeometry args={[2, 2, 0.5, 32]} />}
+        {geometryKey === 'Cube' && <boxGeometry args={[20, 2, 2]} />}
         <MeshTransmissionMaterial
           buffer={buffer.texture}
           ior={ior ?? 1.15}
@@ -115,18 +104,18 @@ const ModeWrapper = memo(function ModeWrapper({
 });
 
 function Lens({ modeProps, ...p }) {
-  return <ModeWrapper glb="/assets/3d/lens.glb" geometryKey="Cylinder" followPointer modeProps={modeProps} {...p} />;
+  return <ModeWrapper geometryKey="Cylinder" followPointer modeProps={modeProps} {...p} />;
 }
 
 function Cube({ modeProps, ...p }) {
-  return <ModeWrapper glb="/assets/3d/cube.glb" geometryKey="Cube" followPointer modeProps={modeProps} {...p} />;
+  return <ModeWrapper geometryKey="Cube" followPointer modeProps={modeProps} {...p} />;
 }
 
 function Bar({ modeProps = {}, ...p }) {
   const defaultMat = {
     transmission: 1,
-    roughness: 0,
-    thickness: 10,
+    roughness: 0.1,
+    thickness: 3,
     ior: 1.15,
     color: '#ffffff',
     attenuationColor: '#ffffff',
@@ -135,7 +124,6 @@ function Bar({ modeProps = {}, ...p }) {
 
   return (
     <ModeWrapper
-      glb="/assets/3d/bar.glb"
       geometryKey="Cube"
       lockToBottom
       followPointer={false}
